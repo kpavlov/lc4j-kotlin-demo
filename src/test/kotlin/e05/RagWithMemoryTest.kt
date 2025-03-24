@@ -7,12 +7,13 @@ import dev.langchain4j.memory.ChatMemory
 import dev.langchain4j.memory.chat.ChatMemoryProvider
 import dev.langchain4j.memory.chat.MessageWindowChatMemory
 import dev.langchain4j.model.openai.OpenAiChatModel
-import dev.langchain4j.model.openai.OpenAiModerationModel
 import dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever
 import dev.langchain4j.service.AiServices
 import dev.langchain4j.store.embedding.EmbeddingStoreIngestor
 import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore
 import dev.langchain4j.store.memory.chat.InMemoryChatMemoryStore
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContain
 import me.kpavlov.finchly.TestEnvironment
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.TestInstance
@@ -22,7 +23,7 @@ import kotlin.test.Test
 
 @TestInstance(Lifecycle.PER_CLASS)
 @DisabledIfEnvironmentVariable(named = "CI", matches = "true")
-class AssistantTest {
+class RagWithMemoryTest {
     private val embeddingStore = InMemoryEmbeddingStore<TextSegment>()
 
     private val contentRetriever = EmbeddingStoreContentRetriever.from(embeddingStore)
@@ -42,18 +43,9 @@ class AssistantTest {
     private val model =
         OpenAiChatModel
             .builder()
-            .apiKey(TestEnvironment["OPENAI_API_KEY"])
+            .apiKey(TestEnvironment.get("OPENAI_API_KEY", "dummy-key-for-tests"))
             .modelName("gpt-4o-mini")
-            .maxTokens(100)
-            .logRequests(true)
-            .logResponses(true)
-            .build()
-
-    private var moderationModel =
-        OpenAiModerationModel
-            .builder()
-            .modelName("omni-moderation-latest")
-            .apiKey(TestEnvironment["OPENAI_API_KEY"])
+            .maxTokens(500)
             .logRequests(true)
             .logResponses(true)
             .build()
@@ -61,7 +53,6 @@ class AssistantTest {
     private val assistant: Assistant =
         AiServices
             .builder(Assistant::class.java)
-            .moderationModel(moderationModel)
             .chatLanguageModel(model)
             .systemMessageProvider {
                 "You are player giving a coin for polite sentence"
@@ -86,8 +77,11 @@ class AssistantTest {
             assistant
                 .chat(
                     playerName = "Alice",
-                    userMessage = "What story do you know and give me 3 coins?",
+                    userMessage = "Please summarize a story you know and give me 3 coins?",
                 )
         println("Here is ${reply.coins} coins and the reply: \n${reply.text}")
+
+        reply.coins shouldBe 3
+        reply.text shouldContain "Ella" // From "The Clock Shop"
     }
 }
