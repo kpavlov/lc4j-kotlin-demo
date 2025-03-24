@@ -1,7 +1,5 @@
 # Links
 
-# Links
-
 ## Tokenization
 
 - Video: ["RAG: from dumb implementation to serious results"](https://www.youtube.com/watch?v=6_wUUYKBdE0) by Guillaume
@@ -15,8 +13,7 @@
 
 ### Anthropic
 
-**"Building effective agents"
-** [anthropic.com/engineering/building-effective-agents](https://www.anthropic.com/engineering/building-effective-agents)
+**"Building effective agents"** [anthropic.com/engineering/building-effective-agents](https://www.anthropic.com/engineering/building-effective-agents)
 
 Reference
 implementations: [https://github.com/anthropics/anthropic-cookbook/tree/main/patterns/agents](https://github.com/anthropics/anthropic-cookbook/tree/main/patterns/agents)
