@@ -1,21 +1,21 @@
 package e03
 
 import dev.langchain4j.data.message.UserMessage.userMessage
-import dev.langchain4j.model.chat.request.ChatRequest
+import dev.langchain4j.model.chat.StreamingChatLanguageModelReply
+import dev.langchain4j.model.chat.chatFlow
 import dev.langchain4j.model.chat.response.ChatResponse
-import dev.langchain4j.model.chat.response.StreamingChatResponseHandler
 import dev.langchain4j.model.openai.OpenAiStreamingChatModel
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.runBlocking
 import me.kpavlov.aimocks.openai.MockOpenai
 import me.kpavlov.finchly.TestEnvironment
 import java.util.concurrent.ConcurrentLinkedQueue
-import java.util.concurrent.CountDownLatch
 import java.util.concurrent.atomic.AtomicReference
 import kotlin.test.Test
 
-class CompletionsStreamingTest {
+class SuspendCompletionsStreamingTest {
     private val mockOpenAi = MockOpenai(verbose = false)
 
     val model =
@@ -29,11 +29,7 @@ class CompletionsStreamingTest {
             .build()
 
     @Test
-    fun `Streaming Completion Request`() {
-        val latch = CountDownLatch(1)
-        val tokens = ConcurrentLinkedQueue<String>()
-        val chatResponseHolder = AtomicReference<ChatResponse>()
-
+    fun `Streaming Completion With Flow`() {
         mockOpenAi.completion {
             userMessageContains("Tell me a joke about LLM")
         } respondsStream {
@@ -48,39 +44,35 @@ class CompletionsStreamingTest {
                 }
         }
 
-        model
-            .chat(
-                ChatRequest
-                    .builder()
-                    .messages(
-                        userMessage("Tell me a joke about LLM"),
-                    ).build(),
-                object : StreamingChatResponseHandler {
-                    override fun onPartialResponse(partialResponse: String?) {
-                        println("🔵 \"$partialResponse\"")
-                        tokens += partialResponse
+        val tokens = ConcurrentLinkedQueue<String>()
+        val chatResponseHolder = AtomicReference<ChatResponse>()
+        runBlocking {
+            model
+                .chatFlow {
+                    messages(
+                        listOf(
+                            userMessage("Tell me a joke about LLM"),
+                        ),
+                    )
+                }.collect { reply ->
+                    when (reply) {
+                        is StreamingChatLanguageModelReply.PartialResponse -> {
+                            println("🔵 \"${reply.partialResponse}\"")
+                            tokens += reply.partialResponse
+                        }
+                        is StreamingChatLanguageModelReply.CompleteResponse -> {
+                            println("✅ \"${reply.response.aiMessage().text()}\"")
+                            chatResponseHolder.set(reply.response)
+                            reply.response.aiMessage().text() shouldBe
+                                " Why did LLM cross road? Hallucination."
+                        }
+                        is StreamingChatLanguageModelReply.Error -> {
+                            println("🛑😫 ${reply.cause.message}")
+                            reply.cause.printStackTrace()
+                        }
                     }
-
-                    override fun onCompleteResponse(completeResponse: ChatResponse) {
-                        println("✅ $completeResponse")
-
-                        chatResponseHolder.set(completeResponse)
-
-                        latch.countDown()
-                    }
-
-                    override fun onError(error: Throwable) {
-                        println("🛑😫 ${error.message}")
-                        error.printStackTrace()
-                        latch.countDown()
-                    }
-                },
-            )
-        latch.await()
-
-        println("Tokens: ${tokens.joinToString(" ")}")
-        println("ChatResponse: ${chatResponseHolder.get()}")
-
+                }
+        }
         tokens.joinToString("") shouldBe " Why did LLM cross road? Hallucination."
         chatResponseHolder.get().aiMessage().text() shouldBe
             " Why did LLM cross road? Hallucination."
