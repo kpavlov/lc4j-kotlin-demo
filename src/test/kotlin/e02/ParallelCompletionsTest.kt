@@ -44,7 +44,9 @@ class ParallelCompletionsTest {
                                 val aiMessageText =
                                     model
                                         .chat {
-                                            messages(listOf(userMessage("Concurrent request #$index")))
+                                            messages(
+                                                listOf(userMessage("Concurrent request #$index")),
+                                            )
                                         }.aiMessage()
                                         .text()
                                 // println("Request $index finished")
