@@ -43,9 +43,11 @@ class RagWithMemoryTest {
     private val model =
         OpenAiChatModel
             .builder()
-            .apiKey(TestEnvironment.get("OPENAI_API_KEY", "dummy-key-for-tests"))
+            .apiKey(TestEnvironment.get("OPENAI_API_KEY"))
             .modelName("gpt-4o-mini")
-            .maxTokens(500)
+            .maxTokens(1500)
+            .responseFormat("json_schema")
+            .strictJsonSchema(true)
             .logRequests(true)
             .logResponses(true)
             .build()
