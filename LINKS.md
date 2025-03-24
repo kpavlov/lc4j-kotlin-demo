@@ -1,13 +1,5 @@
 # Links
 
-## Tokenization
-
-- Video: ["RAG: from dumb implementation to serious results"](https://www.youtube.com/watch?v=6_wUUYKBdE0) by Guillaume Laforge
-- [Token Visualizer](https://tokens-lpj6s2duga-ew.a.run.app/)
-- https://github.com/glaforge/llm-text-tokenization
-
----
-
 ## Agentic AI
 
 ### Anthropic
@@ -28,8 +20,6 @@ implementations: [https://github.com/anthropics/anthropic-cookbook/tree/main/pat
 
 **"Building Effective Agents with Spring AI (Part 1)"** by Christian
 Tzolov [spring.io/blog/2025/01/21/spring-ai-agentic-patterns](https://spring.io/blog/2025/01/21/spring-ai-agentic-patterns)
-
----
 
 ## Testing Utilities
 
