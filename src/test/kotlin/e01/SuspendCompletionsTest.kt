@@ -2,7 +2,6 @@ package e01
 
 import dev.langchain4j.data.message.UserMessage.userMessage
 import dev.langchain4j.model.chat.chat
-import dev.langchain4j.model.chat.request.ChatRequest
 import dev.langchain4j.model.openai.OpenAiChatModel
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.Dispatchers
@@ -12,10 +11,10 @@ import me.kpavlov.finchly.TestEnvironment
 import kotlin.test.Test
 import kotlin.time.Duration.Companion.seconds
 
-class CompletionsTest {
+internal class SuspendCompletionsTest {
     private val mockOpenAi = MockOpenai(verbose = false)
 
-    val model =
+    private val model: OpenAiChatModel =
         OpenAiChatModel
             .builder()
             .apiKey(TestEnvironment.get("OPENAI_API_KEY", "dummy-key-for-tests"))
@@ -28,30 +27,7 @@ class CompletionsTest {
             .build()
 
     @Test
-    fun `Simple Completion Request`() {
-        mockOpenAi.completion {
-            userMessageContains("Tell me a joke about LLM")
-        } responds {
-            assistantContent = "Why did LLM cross road? Hallucination."
-        }
-
-        val response =
-            model.chat(
-                ChatRequest
-                    .builder()
-                    .messages(
-                        userMessage("Tell me a joke about LLM"),
-                    ).build(),
-            )
-        val aiResponse = response.aiMessage().text()
-
-        aiResponse shouldBe "Why did LLM cross road? Hallucination."
-
-        println(aiResponse) // "Why did LLM cross road? Hallucination."
-    }
-
-    @Test
-    fun `Completion Suspend Function`() {
+    fun `Completion Request (Non-Blocking)`() {
         mockOpenAi.completion {
             userMessageContains("Request A")
         } responds {
