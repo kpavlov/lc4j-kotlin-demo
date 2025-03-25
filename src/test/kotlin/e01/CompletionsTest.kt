@@ -8,6 +8,7 @@ import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import me.kpavlov.aimocks.openai.MockOpenai
+import me.kpavlov.finchly.TestEnvironment
 import kotlin.test.Test
 import kotlin.time.Duration.Companion.seconds
 
@@ -17,10 +18,11 @@ class CompletionsTest {
     val model =
         OpenAiChatModel
             .builder()
+            .apiKey(TestEnvironment.get("OPENAI_API_KEY", "dummy-key-for-tests"))
             .baseUrl(mockOpenAi.baseUrl())
-            .modelName("o1")
+            .modelName("gpt-4o-mini")
             .temperature(0.7)
-            .maxTokens(1000)
+            .maxCompletionTokens(100)
             .logResponses(true)
             .logRequests(true)
             .build()
