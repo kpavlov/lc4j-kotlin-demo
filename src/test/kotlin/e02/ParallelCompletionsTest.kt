@@ -3,11 +3,12 @@ package e02
 import dev.langchain4j.data.message.UserMessage.userMessage
 import dev.langchain4j.model.chat.chat
 import dev.langchain4j.model.openai.OpenAiChatModel
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.runBlocking
 import me.kpavlov.aimocks.openai.MockOpenai
+import java.util.concurrent.Executors
 import kotlin.test.Test
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.measureTimedValue
@@ -15,15 +16,16 @@ import kotlin.time.measureTimedValue
 class ParallelCompletionsTest {
     private val mockOpenAi = MockOpenai(verbose = false)
 
-    val model =
+    val model: OpenAiChatModel =
         OpenAiChatModel
             .builder()
+            .apiKey("dummy-key-for-tests")
             .baseUrl(mockOpenAi.baseUrl())
             .modelName("o1")
             .temperature(0.7)
-            .maxTokens(1000)
-            .logResponses(true)
-            .logRequests(true)
+            .maxCompletionTokens(1000)
+            .logResponses(false)
+            .logRequests(false)
             .build()
 
     @Test
@@ -35,7 +37,7 @@ class ParallelCompletionsTest {
             delay = 1.seconds
         }
 
-        runBlocking(Dispatchers.IO) {
+        runBlocking(Executors.newVirtualThreadPerTaskExecutor().asCoroutineDispatcher()) {
             val timedValue =
                 measureTimedValue {
                     (1..64) // expensive with OpenAI API 🤑
@@ -55,8 +57,9 @@ class ParallelCompletionsTest {
                         }.awaitAll()
                 }
             val duration = timedValue.duration
-            println("⏱️Total time: $duration") // N % 64
-            println("🟢Result count: ${timedValue.value.size}")
+            println("-----------")
+            println("🟢Samples: ${timedValue.value.size} ⏱️Total time: $duration") // N % 64
+            println("-----------")
         }
     }
 }
