@@ -18,6 +18,11 @@ insert_final_newline = true
 trim_trailing_whitespace = false
 
 # noinspection EditorConfigKeyCorrectness
+[*.java]
+indent_size = 4
+max_line_length = 100
+
+# noinspection EditorConfigKeyCorrectness
 [*.{kt,kts}]
 indent_size = 4
 max_line_length = 100
@@ -31,5 +36,5 @@ ktlint_function_naming_ignore_when_annotated_with = "Test"
 max_line_length = off
 ij_kotlin_name_count_to_use_star_import = unset
 ij_kotlin_name_count_to_use_star_import_for_members = unset
-ij_kotlin_packages_to_use_import_on_demand = kotlinx.serialization,kotlinx.serialization.descriptors,kotlinx.serialization.encoding
+ij_kotlin_packages_to_use_import_on_demand = kotlinx.serialization, kotlinx.serialization.descriptors, kotlinx.serialization.encoding
 insert_final_newline = unset
