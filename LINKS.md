@@ -48,4 +48,4 @@ Tzolov [spring.io/blog/2025/01/21/spring-ai-agentic-patterns](https://spring.io/
 [**AI-Mocks and Mokksy**](https://github.com/kpavlov/ai-mocks/) - Mock HTTP/SSE and
 LLMs ([docs](https://kpavlov.github.io/ai-mocks/))
 
-[**Finchly**](https://github.com/kpavlov/finchly) - Mocking test environment
+[**Finchly**](https://github.com/kpavlov/finchly) - Test utilities for mocking
