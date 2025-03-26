@@ -51,3 +51,7 @@ Tzolov [spring.io/blog/2025/01/21/spring-ai-agentic-patterns](https://spring.io/
 LLMs ([docs](https://kpavlov.github.io/ai-mocks/))
 
 [**Finchly**](https://github.com/kpavlov/finchly) - Test utilities for mocking
+
+## Others
+
+- [xef.ai](https://xef.ai/) - Xef.ai is an open-source, multiplatform library designed to simplify the integration of modern AI capabilities, such as large language models and image generation, into applications or services. 
