@@ -36,7 +36,7 @@ The examples in this repository showcase various features and capabilities of La
    ```bash
    export OPENAI_API_KEY=your-api-key
    ```
-   
+
    Or create a `.env` file in the project root with:
    ```
    OPENAI_API_KEY=your-api-key
@@ -50,6 +50,32 @@ The examples in this repository showcase various features and capabilities of La
 ## Examples
 
 The examples are organized into different packages in the `src/test/kotlin` directory:
+
+### e00: Asynchronous Programming Basics
+- **Async1JavaTest** and **Async2JavaTest**: Show asynchronous operations in Java using CompletableFuture
+- **AsyncKotlinTest**: Demonstrates basic asynchronous operations in Kotlin using coroutines
+
+### e01: Basic LangChain4j Chat Models
+- **BlockingCompletionsTest**: Shows how to use LangChain4j with OpenAI in a blocking (synchronous) manner
+- **JavaAsyncWrapperTest**: Demonstrates how to wrap Java-style asynchronous operations in Kotlin coroutines
+- **SuspendCompletionsTest**: Shows how to use LangChain4j with OpenAI in a non-blocking (asynchronous) manner using Kotlin coroutines
+
+### e02: Parallel Processing
+- **ParallelCompletionsTest**: Demonstrates how to make parallel (concurrent) requests to LangChain4j's chat models using Kotlin coroutines
+
+### e03: Streaming Completions
+- **CompletionsStreamingTest**: Shows how to use streaming completions with LangChain4j in a blocking manner
+- **SuspendCompletionsStreamingTest**: Demonstrates how to use streaming completions with LangChain4j in a non-blocking manner using Kotlin flows
+
+### e04: AIServices
+- **Lc4jChatModelMockTest**: Demonstrates how to use LangChain4j's built-in ChatModelMock for testing
+- **AiMocksServiceTest**: Shows how to use MockOpenai to mock LLM responses for testing
+
+### e05: Retrieval Augmented Generation (RAG) with Memory
+- **RagWithMemoryTest**: Shows how to use Retrieval Augmented Generation (RAG) with memory in LangChain4j, including document loading, embedding, and retrieval
+
+### e06: Content Moderation
+- **ModerationTest**: Demonstrates how to use LangChain4j's moderation capabilities to filter inappropriate content
 
 
 ## Running the Examples
@@ -65,6 +91,10 @@ Or run a specific test:
 ```bash
 ./gradlew test --tests "e05.RagWithMemoryTest"
 ```
+
+## License
+
+This project is licensed under the GNU General Public License v3.0 (GPLv3) - see the [LICENSE](LICENSE) file for details.
 
 ## Resources
 

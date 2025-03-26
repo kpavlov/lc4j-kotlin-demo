@@ -38,10 +38,10 @@ class AsyncKotlinTest {
             val persistentId: UUID?
             val apiResult = callApi()
             if (apiResult.contains("Bye")) {
-                persistentId = null
-            } else {
                 val processedData = processData(apiResult)
                 persistentId = saveToDb(processedData)
+            } else {
+                persistentId = null
             }
 
             println("✅ Result: $persistentId")

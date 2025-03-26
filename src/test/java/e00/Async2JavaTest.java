@@ -55,15 +55,14 @@ public class Async2JavaTest {
     @Test
     void testAsyncWithConditions() {
         final var result = callApi()
-            .thenCompose(this::processData)
             .thenApply(it -> {
-                //
                 if (it.contains("Bye")) {
                     return it;
                 } else {
                     throw new IllegalStateException("No World");
                 }
             })
+            .thenCompose(this::processData)
             .thenCompose(this::saveToDb)
             .handle((UUID id, Throwable th) -> {
                 if (th != null) {
