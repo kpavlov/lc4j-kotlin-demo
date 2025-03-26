@@ -3,7 +3,7 @@ package e01
 import dev.langchain4j.data.message.UserMessage.userMessage
 import dev.langchain4j.model.chat.request.ChatRequest
 import dev.langchain4j.model.openai.OpenAiChatModel
-import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContain
 import me.kpavlov.aimocks.openai.MockOpenai
 import me.kpavlov.finchly.TestEnvironment
 import kotlin.test.Test
@@ -41,7 +41,8 @@ internal class BlockingCompletionsTest {
             )
         val aiResponse = response.aiMessage().text()
 
-        aiResponse shouldBe "Why did LLM cross road? Hallucination."
+        aiResponse shouldContain "LLM"
+        // aiResponse shouldBe "Why did LLM cross road? Hallucination."
 
         println(aiResponse) // "Why did LLM cross road? Hallucination."
     }

@@ -1,8 +1,9 @@
 # Links
 
-## AI RPG Game
+- **AI RPG Game** [github.com/kpavlov/elven](https://github.com/kpavlov/elven)
+- **LangChain4J** [github.com/langchain4j/langchain4j](https://github.com/langchain4j/langchain4j)
+- **LangChain4J-Kotlin** - LangChain4J Kotlin Extensions. Partially integrated back to LangChain4J [github.com/kpavlov/langchain4j-kotlin](https://github.com/kpavlov/langchain4j-kotlin)
 
-[github.com/kpavlov/elven](https://github.com/kpavlov/elven)
 
 ## Tokenization
 
@@ -36,6 +37,7 @@ Tzolov [spring.io/blog/2025/01/21/spring-ai-agentic-patterns](https://spring.io/
 
 ### OpenAI Responses API
 
+- [**"New tools for building agents"**](https://openai.com/index/new-tools-for-building-agents/)
 - [OpenAI Responses API](https://platform.openai.com/docs/api-reference/responses)
 - [Responses vs Chat Completions](https://platform.openai.com/docs/guides/responses-vs-chat-completions)
 

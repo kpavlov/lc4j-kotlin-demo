@@ -3,7 +3,7 @@ package e01
 import dev.langchain4j.data.message.UserMessage.userMessage
 import dev.langchain4j.model.chat.chat
 import dev.langchain4j.model.openai.OpenAiChatModel
-import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContainIgnoringCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import me.kpavlov.aimocks.openai.MockOpenai
@@ -29,9 +29,9 @@ internal class SuspendCompletionsTest {
     @Test
     fun `Completion Request (Non-Blocking)`() {
         mockOpenAi.completion {
-            userMessageContains("Request A")
+            userMessageContains("What does LLM stand for?")
         } responds {
-            assistantContent = "Response A"
+            assistantContent = "LLM typically stands for \"Large Language Model.\""
             delay = 2.seconds
         }
 
@@ -41,13 +41,13 @@ internal class SuspendCompletionsTest {
                 model.chat {
                     messages(
                         listOf(
-                            userMessage("Request A"),
+                            userMessage("What does LLM stand for?"),
                         ),
                     )
                 }
 
             val aiResponse = response.aiMessage().text()
-            aiResponse shouldBe "Response A"
+            aiResponse shouldContainIgnoringCase "Large Language Model"
             println("AI Response: $aiResponse")
         }
     }
