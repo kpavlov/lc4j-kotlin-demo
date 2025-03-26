@@ -59,7 +59,7 @@ public class Async2JavaTest {
                 if (it.contains("Bye")) {
                     return it;
                 } else {
-                    throw new IllegalStateException("No World");
+                    throw new IllegalStateException("No 'Bye' in the response");
                 }
             })
             .thenCompose(this::processData)
