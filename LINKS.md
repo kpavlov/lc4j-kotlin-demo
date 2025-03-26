@@ -7,8 +7,7 @@
 
 ## Tokenization
 
-- Video: ["RAG: from dumb implementation to serious results"](https://www.youtube.com/watch?v=6_wUUYKBdE0) by Guillaume
-  Laforge
+- Video: ["RAG: from dumb implementation to serious results"](https://youtu.be/6_wUUYKBdE0) by Guillaume Laforge
 - [Token Visualizer](https://tokens-lpj6s2duga-ew.a.run.app/)
 - https://github.com/glaforge/llm-text-tokenization
 
