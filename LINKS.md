@@ -1,5 +1,7 @@
 # Links
 
+**"Bringing LangChain4J to Kotlin"** - Presentation Slides: https://speakerdeck.com/kpavlov/bringing-langchain4j-to-kotlin
+
 - **AI RPG Game** [github.com/kpavlov/elven](https://github.com/kpavlov/elven)
 - **LangChain4J** [github.com/langchain4j/langchain4j](https://github.com/langchain4j/langchain4j)
 - **LangChain4J-Kotlin** - LangChain4J Kotlin Extensions. Partially integrated back to LangChain4J [github.com/kpavlov/langchain4j-kotlin](https://github.com/kpavlov/langchain4j-kotlin)
