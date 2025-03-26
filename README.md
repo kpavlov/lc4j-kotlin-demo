@@ -4,6 +4,8 @@
 
 This repository contains a collection of examples demonstrating how to use [LangChain4j](https://github.com/langchain4j/langchain4j) with Kotlin. LangChain4j is a popular Java framework for building applications with Large Language Models (LLMs).
 
+Also checkout [LINKS.md](LINKS.md).
+
 ## Overview
 
 The examples in this repository showcase various features and capabilities of LangChain4j, including:

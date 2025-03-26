@@ -1,5 +1,9 @@
 # Links
 
+## AI RPG Game
+
+[github.com/kpavlov/elven](https://github.com/kpavlov/elven)
+
 ## Tokenization
 
 - Video: ["RAG: from dumb implementation to serious results"](https://www.youtube.com/watch?v=6_wUUYKBdE0) by Guillaume
@@ -29,6 +33,11 @@ implementations: [https://github.com/anthropics/anthropic-cookbook/tree/main/pat
 
 **"Building Effective Agents with Spring AI (Part 1)"** by Christian
 Tzolov [spring.io/blog/2025/01/21/spring-ai-agentic-patterns](https://spring.io/blog/2025/01/21/spring-ai-agentic-patterns)
+
+### OpenAI Responses API
+
+- [OpenAI Responses API](https://platform.openai.com/docs/api-reference/responses)
+- [Responses vs Chat Completions](https://platform.openai.com/docs/guides/responses-vs-chat-completions)
 
 ---
 
