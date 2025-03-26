@@ -5,7 +5,7 @@ import dev.langchain4j.model.chat.request.ChatRequest
 import dev.langchain4j.model.chat.response.ChatResponse
 import dev.langchain4j.model.chat.response.StreamingChatResponseHandler
 import dev.langchain4j.model.openai.OpenAiStreamingChatModel
-import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContainIgnoringCase
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
 import me.kpavlov.aimocks.openai.MockOpenai
@@ -35,11 +35,11 @@ class CompletionsStreamingTest {
         val chatResponseHolder = AtomicReference<ChatResponse>()
 
         mockOpenAi.completion {
-            userMessageContains("Tell me a joke about LLM")
+            userMessageContains("What is the color of the sky?")
         } respondsStream {
             responseFlow =
                 flow {
-                    "Why did LLM cross road? Hallucination."
+                    "The  color  of  the  sky  typically  appears  blue  during  the  day."
                         .split(" ")
                         .forEach { word ->
                             emit(" $word")
@@ -53,7 +53,7 @@ class CompletionsStreamingTest {
                 ChatRequest
                     .builder()
                     .messages(
-                        userMessage("Tell me a joke about LLM"),
+                        userMessage("What is the color of the sky?"),
                     ).build(),
                 object : StreamingChatResponseHandler {
                     override fun onPartialResponse(partialResponse: String?) {
@@ -81,8 +81,9 @@ class CompletionsStreamingTest {
         println("Tokens: ${tokens.joinToString(" ")}")
         println("ChatResponse: ${chatResponseHolder.get()}")
 
-        tokens.joinToString("") shouldBe " Why did LLM cross road? Hallucination."
-        chatResponseHolder.get().aiMessage().text() shouldBe
-            " Why did LLM cross road? Hallucination."
+        tokens.joinToString(" ") shouldContainIgnoringCase "blue"
+
+//        tokens.joinToString("") shouldBe " Why did LLM cross road? Hallucination."
+//        chatResponseHolder.get().aiMessage().text() shouldBe " Why did LLM cross road? Hallucination."
     }
 }

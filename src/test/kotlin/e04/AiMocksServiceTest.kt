@@ -2,6 +2,7 @@ package e04
 
 import dev.langchain4j.model.openai.OpenAiChatModel
 import dev.langchain4j.service.AiServices
+import dev.langchain4j.service.UserMessage
 import io.kotest.matchers.shouldBe
 import me.kpavlov.aimocks.openai.MockOpenai
 import kotlin.test.Test
@@ -16,7 +17,12 @@ class AiMocksServiceTest {
             .modelName("o1")
             .build()
 
-    val service =
+    interface JokeService {
+        @UserMessage("Tell me a joke about {{subject}}")
+        fun joke(subject: String): String
+    }
+
+    val service: JokeService =
         AiServices.create(
             JokeService::class.java,
             model,
