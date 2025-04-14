@@ -24,7 +24,7 @@ kotlin {
 }
 
 dependencies {
-    implementation(platform("dev.langchain4j:langchain4j-bom:1.0.0-beta2"))
+    implementation(platform("dev.langchain4j:langchain4j-bom:1.0.0-beta3"))
     implementation(group = "dev.langchain4j", name = "langchain4j")
     implementation(group = "dev.langchain4j", name = "langchain4j-open-ai")
     implementation(group = "dev.langchain4j", name = "langchain4j-easy-rag")
