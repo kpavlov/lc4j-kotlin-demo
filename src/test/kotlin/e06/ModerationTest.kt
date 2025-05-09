@@ -38,7 +38,7 @@ class ModerationTest {
         AiServices
             .builder(ModeratedAssistant::class.java)
             .moderationModel(moderationModel)
-            .chatLanguageModel(model)
+            .chatModel(model)
             .build()
 
     @Test

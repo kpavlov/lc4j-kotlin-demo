@@ -1,7 +1,7 @@
 package e01
 
 import dev.langchain4j.data.message.UserMessage.userMessage
-import dev.langchain4j.model.chat.chat
+import dev.langchain4j.kotlin.model.chat.chat
 import dev.langchain4j.model.openai.OpenAiChatModel
 import io.kotest.matchers.string.shouldContainIgnoringCase
 import kotlinx.coroutines.Dispatchers
