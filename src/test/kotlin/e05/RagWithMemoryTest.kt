@@ -55,7 +55,7 @@ class RagWithMemoryTest {
     private val assistant: Assistant =
         AiServices
             .builder(Assistant::class.java)
-            .chatLanguageModel(model)
+            .chatModel(model)
             .systemMessageProvider {
                 "You are player giving a coin for polite sentence"
             }.chatMemoryProvider(chatMemoryProvider)

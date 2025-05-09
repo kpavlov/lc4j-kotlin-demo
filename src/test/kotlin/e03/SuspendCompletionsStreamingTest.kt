@@ -1,8 +1,8 @@
 package e03
 
 import dev.langchain4j.data.message.UserMessage.userMessage
-import dev.langchain4j.model.chat.StreamingChatLanguageModelReply
-import dev.langchain4j.model.chat.chatFlow
+import dev.langchain4j.kotlin.model.chat.StreamingChatModelReply
+import dev.langchain4j.kotlin.model.chat.chatFlow
 import dev.langchain4j.model.chat.response.ChatResponse
 import dev.langchain4j.model.openai.OpenAiStreamingChatModel
 import io.kotest.matchers.shouldBe
@@ -56,17 +56,17 @@ class SuspendCompletionsStreamingTest {
                     )
                 }.collect { reply ->
                     when (reply) {
-                        is StreamingChatLanguageModelReply.PartialResponse -> {
+                        is StreamingChatModelReply.PartialResponse -> {
                             println("🔵 \"${reply.partialResponse}\"")
                             tokens += reply.partialResponse
                         }
-                        is StreamingChatLanguageModelReply.CompleteResponse -> {
+                        is StreamingChatModelReply.CompleteResponse -> {
                             println("✅ \"${reply.response.aiMessage().text()}\"")
                             chatResponseHolder.set(reply.response)
                             reply.response.aiMessage().text() shouldBe
                                 " Why did LLM cross road? Hallucination."
                         }
-                        is StreamingChatLanguageModelReply.Error -> {
+                        is StreamingChatModelReply.Error -> {
                             println("🛑😫 ${reply.cause.message}")
                             reply.cause.printStackTrace()
                         }

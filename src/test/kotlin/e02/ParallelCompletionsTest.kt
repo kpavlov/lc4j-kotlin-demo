@@ -1,7 +1,7 @@
 package e02
 
 import dev.langchain4j.data.message.UserMessage.userMessage
-import dev.langchain4j.model.chat.chat
+import dev.langchain4j.kotlin.model.chat.chat
 import dev.langchain4j.model.openai.OpenAiChatModel
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.async
