@@ -1,4 +1,4 @@
-package e06
+package e06moderation
 
 import dev.langchain4j.model.openai.OpenAiChatModel
 import dev.langchain4j.model.openai.OpenAiModerationModel
@@ -19,7 +19,7 @@ class ModerationTest {
         OpenAiChatModel
             .builder()
             .apiKey(TestEnvironment["OPENAI_API_KEY"])
-            .modelName("gpt-4o-mini")
+            .modelName("gpt-4.1-nano")
             .maxTokens(100)
             .logRequests(true)
             .logResponses(true)

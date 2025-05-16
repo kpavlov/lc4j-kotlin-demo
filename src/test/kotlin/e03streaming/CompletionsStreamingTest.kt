@@ -1,4 +1,4 @@
-package e03
+package e03streaming
 
 import dev.langchain4j.data.message.UserMessage.userMessage
 import dev.langchain4j.model.chat.request.ChatRequest
@@ -23,7 +23,7 @@ class CompletionsStreamingTest {
             .builder()
             .apiKey(TestEnvironment.get("OPENAI_API_KEY", "dummy-key-for-tests"))
             .baseUrl(mockOpenAi.baseUrl())
-            .modelName("gpt-4o-mini")
+            .modelName("gpt-4.1-nano")
             .logResponses(true)
             .logRequests(true)
             .build()

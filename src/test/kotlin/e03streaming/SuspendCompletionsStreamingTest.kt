@@ -1,4 +1,4 @@
-package e03
+package e03streaming
 
 import dev.langchain4j.data.message.UserMessage.userMessage
 import dev.langchain4j.kotlin.model.chat.StreamingChatModelReply
@@ -22,8 +22,8 @@ class SuspendCompletionsStreamingTest {
         OpenAiStreamingChatModel
             .builder()
             .apiKey(TestEnvironment.get("OPENAI_API_KEY", "dummy-key-for-tests"))
-            .baseUrl(mockOpenAi.baseUrl())
-            .modelName("gpt-4o-mini")
+            .baseUrl(mockOpenAi.baseUrl()) // comment this to call real OpenAI
+            .modelName("gpt-4.1-nano")
             .logResponses(true)
             .logRequests(true)
             .build()
