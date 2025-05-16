@@ -1,5 +1,7 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
-    kotlin("jvm") version "2.1.20"
+    kotlin("jvm") version "2.1.21"
 }
 
 group = "com.example"
@@ -19,6 +21,7 @@ tasks.test {
 kotlin {
     jvmToolchain(23)
     compilerOptions {
+        jvmTarget = JvmTarget.JVM_23
         javaParameters = true
     }
 }

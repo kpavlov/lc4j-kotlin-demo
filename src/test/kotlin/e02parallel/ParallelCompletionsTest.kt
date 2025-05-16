@@ -1,4 +1,4 @@
-package e02
+package e02parallel
 
 import dev.langchain4j.data.message.UserMessage.userMessage
 import dev.langchain4j.kotlin.model.chat.chat
@@ -44,14 +44,10 @@ class ParallelCompletionsTest {
                         .map { index ->
                             async {
                                 val aiMessageText =
-                                    model
-                                        .chat {
-                                            messages(
-                                                listOf(userMessage("Concurrent request #$index")),
-                                            )
-                                        }.aiMessage()
-                                        .text()
-                                // println("Request $index finished")
+                                    model.chat {
+                                        messages += userMessage("Concurrent request #$index")
+                                    }.aiMessage().text()
+                                 println("Request $index finished")
                                 aiMessageText
                             }
                         }.awaitAll()

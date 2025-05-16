@@ -1,4 +1,4 @@
-package e05
+package e05rag
 
 import dev.langchain4j.data.document.loader.FileSystemDocumentLoader
 import dev.langchain4j.data.document.parser.TextDocumentParser
@@ -44,7 +44,7 @@ class RagWithMemoryTest {
         OpenAiChatModel
             .builder()
             .apiKey(TestEnvironment.get("OPENAI_API_KEY"))
-            .modelName("gpt-4o-mini")
+            .modelName("gpt-4.1-nano")
             .maxTokens(1500)
             .responseFormat("json_schema")
             .strictJsonSchema(true)

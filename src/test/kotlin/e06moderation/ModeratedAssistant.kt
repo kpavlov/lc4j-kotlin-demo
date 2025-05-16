@@ -1,4 +1,4 @@
-package e06
+package e06moderation
 
 import dev.langchain4j.service.Moderate
 import dev.langchain4j.service.SystemMessage

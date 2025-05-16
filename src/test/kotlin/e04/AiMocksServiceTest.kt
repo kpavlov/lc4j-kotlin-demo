@@ -10,11 +10,13 @@ import kotlin.test.Test
 class AiMocksServiceTest {
     val mockOpenAi = MockOpenai(verbose = true)
 
-    val model =
+    val model: OpenAiChatModel =
         OpenAiChatModel
             .builder()
             .baseUrl(mockOpenAi.baseUrl())
-            .modelName("o1")
+            .modelName("gpt-4.1-nano")
+            .logRequests(true)
+            .logResponses(true)
             .build()
 
     interface JokeService {

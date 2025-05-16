@@ -16,7 +16,7 @@ internal class BlockingCompletionsTest {
             .builder()
             .apiKey(TestEnvironment.get("OPENAI_API_KEY", "dummy-key-for-tests"))
             .baseUrl(mockOpenAi.baseUrl())
-            .modelName("gpt-4o-mini")
+            .modelName("gpt-4.1-nano")
             .temperature(0.7)
             .maxCompletionTokens(100)
             .logResponses(true)

@@ -1,4 +1,4 @@
-package e05
+package e05rag
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
