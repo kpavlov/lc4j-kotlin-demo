@@ -27,13 +27,15 @@ kotlin {
 }
 
 dependencies {
-    implementation(platform("dev.langchain4j:langchain4j-bom:1.0.0-beta4"))
+    implementation(platform("dev.langchain4j:langchain4j-bom:1.0.1"))
     implementation(group = "dev.langchain4j", name = "langchain4j-kotlin")
     implementation(group = "dev.langchain4j", name = "langchain4j-open-ai")
     implementation(group = "dev.langchain4j", name = "langchain4j-easy-rag")
     implementation("me.kpavlov.aimocks:ai-mocks-openai:0.3.5")
-    runtimeOnly("org.slf4j:slf4j-simple")
+    runtimeOnly("org.slf4j:slf4j-simple:2.0.17")
     testImplementation(group = "dev.langchain4j", name = "langchain4j-core", classifier = "tests")
     testImplementation("me.kpavlov.finchly:finchly:0.1.1")
+    testImplementation("org.assertj:assertj-core:3.27.3")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
     testImplementation("io.kotest:kotest-assertions-json:5.9.1")
 }
