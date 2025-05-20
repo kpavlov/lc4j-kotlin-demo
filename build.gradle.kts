@@ -31,7 +31,7 @@ dependencies {
     implementation(group = "dev.langchain4j", name = "langchain4j-kotlin")
     implementation(group = "dev.langchain4j", name = "langchain4j-open-ai")
     implementation(group = "dev.langchain4j", name = "langchain4j-easy-rag")
-    implementation("me.kpavlov.aimocks:ai-mocks-openai:0.3.5")
+    implementation("me.kpavlov.aimocks:ai-mocks-openai:0.4.0")
     runtimeOnly("org.slf4j:slf4j-simple:2.0.17")
     testImplementation(group = "dev.langchain4j", name = "langchain4j-core", classifier = "tests")
     testImplementation("me.kpavlov.finchly:finchly:0.1.1")
