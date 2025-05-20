@@ -52,11 +52,11 @@ The examples in this repository showcase various features and capabilities of La
 The examples are organized into different packages in the `src/test/kotlin` directory:
 
 ### e00: Asynchronous Programming Basics
-- **Async1JavaTest** and **Async2JavaTest**: Show asynchronous operations in Java using CompletableFuture
-- **AsyncKotlinTest**: Demonstrates basic asynchronous operations in Kotlin using coroutines
+- **[Async1JavaTest](src/test/java/e00/Async1JavaTest.java)** and **Async2JavaTest**: Show asynchronous operations in Java using CompletableFuture
+- **[AsyncKotlinTest](src/test/java/e00/Async2JavaTest.java)**: Demonstrates basic asynchronous operations in Kotlin using coroutines
 
 ### e01: Basic LangChain4j Chat Models
-- **BlockingCompletionsTest**: Shows how to use LangChain4j with OpenAI in a blocking (synchronous) manner
+- **[BlockingCompletionsTest](src/test/kotlin/e01/BlockingCompletionsTest.kt)**: Shows how to use LangChain4j with OpenAI in a blocking (synchronous) manner
 - **JavaAsyncWrapperTest**: Demonstrates how to wrap Java-style asynchronous operations in Kotlin coroutines
 - **SuspendCompletionsTest**: Shows how to use LangChain4j with OpenAI in a non-blocking (asynchronous) manner using Kotlin coroutines
 

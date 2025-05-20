@@ -7,7 +7,9 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-public class Async2JavaTest {
+import static org.assertj.core.api.Assertions.assertThat;
+
+class Async2JavaTest {
     final Executor executor1 = Executors.newFixedThreadPool(10);
     final Executor executor2 = Executors.newFixedThreadPool(20);
     final Executor executor3 = Executors.newFixedThreadPool(10);
@@ -50,6 +52,7 @@ public class Async2JavaTest {
             .join();
 
         System.out.println("✅ Result: " + result);
+        assertThat(result).isNotNull();
     }
 
     @Test
@@ -67,6 +70,7 @@ public class Async2JavaTest {
             .handle((UUID id, Throwable th) -> {
                 if (th != null) {
                     // handle exception
+                    System.out.println("❌ Error caught as expected" + th.getMessage());
                     return null;
                 } else {
                     return id;
@@ -75,6 +79,7 @@ public class Async2JavaTest {
             .join();
 
         System.out.println("✅ Result: " + result);
+        assertThat(result).isNull();
     }
 
 }
