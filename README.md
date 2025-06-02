@@ -61,21 +61,26 @@ The examples are organized into different packages in the `src/test/kotlin` dire
 - **SuspendCompletionsTest**: Shows how to use LangChain4j with OpenAI in a non-blocking (asynchronous) manner using Kotlin coroutines
 
 ### e02: Parallel Processing
-- **ParallelCompletionsTest**: Demonstrates how to make parallel (concurrent) requests to LangChain4j's chat models using Kotlin coroutines
+- **[ParallelCompletionsTest.kt](src/test/kotlin/e02parallel/ParallelCompletionsTest.kt)**: Demonstrates how to make parallel (concurrent) requests to LangChain4j's chat models using Kotlin coroutines
 
 ### e03: Streaming Completions
-- **CompletionsStreamingTest**: Shows how to use streaming completions with LangChain4j in a blocking manner
-- **SuspendCompletionsStreamingTest**: Demonstrates how to use streaming completions with LangChain4j in a non-blocking manner using Kotlin flows
+- **[CompletionsStreamingTest](src/test/kotlin/e03streaming/CompletionsStreamingTest.kt)**: Shows how to use streaming completions with LangChain4j in a blocking manner
+- **[SuspendCompletionsStreamingTest](src/test/kotlin/e03streaming/SuspendCompletionsStreamingTest.kt)**: Demonstrates how to use streaming completions with LangChain4j in a non-blocking manner using Kotlin flows
 
 ### e04: AIServices
-- **Lc4jChatModelMockTest**: Demonstrates how to use LangChain4j's built-in ChatModelMock for testing
-- **AiMocksServiceTest**: Shows how to use MockOpenai to mock LLM responses for testing
+- **[AiMocksServiceTest](src/test/kotlin/e04/AiMocksServiceTest.kt)**: Demonstrates how to use LangChain4j's built-in ChatModelMock for testing
+- **[AiMocksServiceTest.kt](src/test/kotlin/e04/AiMocksServiceTest.kt)**: Shows how to use MockOpenai to mock LLM responses for testing
 
 ### e05: Retrieval Augmented Generation (RAG) with Memory
-- **RagWithMemoryTest**: Shows how to use Retrieval Augmented Generation (RAG) with memory in LangChain4j, including document loading, embedding, and retrieval
+- **[RagWithMemoryTest](src/test/kotlin/e05rag/RagWithMemoryTest.kt)**: Shows how to use Retrieval Augmented Generation (RAG) with memory in LangChain4j, including document loading, embedding, and retrieval
 
 ### e06: Content Moderation
-- **ModerationTest**: Demonstrates how to use LangChain4j's moderation capabilities to filter inappropriate content
+- **[ModerationTest](src/test/kotlin/e06moderation/ModerationTest.kt)**: Demonstrates how to use LangChain4j's moderation capabilities to filter inappropriate content
+
+### e07: Embeddings
+- **[EmbeddingsTest](src/test/kotlin/e07embeddings/EmbeddingsTest.kt)**: The test demonstrates that two texts about embeddings and AI performance have higher cosine similarity to each other than either has to a completely unrelated Cinderella fairy tale text, proving that the embedding model successfully groups semantically related content together in the vector space.
+
+
 
 
 ## Running the Examples

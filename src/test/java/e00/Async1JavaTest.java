@@ -41,6 +41,4 @@ class Async1JavaTest {
          System.out.println("✅ Result: " + result);
          assertThat(result).isEqualTo("HE￡￡O WOR￡D");
     }
-
-
 }

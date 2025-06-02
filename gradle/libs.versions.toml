@@ -1,0 +1,34 @@
+[versions]
+kotlin = "2.1.21"
+langchain4j = "1.0.1"
+kotest = "5.9.1"
+kotlinx-coroutines = "1.10.2"
+assertj = "3.27.3"
+slf4j = "2.0.17"
+aimocks = "0.4.0"
+finchly = "0.1.1"
+
+[libraries]
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test" }
+
+# LangChain4j libraries
+langchain4j-bom = { group = "dev.langchain4j", name = "langchain4j-bom", version.ref = "langchain4j" }
+langchain4j-kotlin = { group = "dev.langchain4j", name = "langchain4j-kotlin" }
+langchain4j-openai = { group = "dev.langchain4j", name = "langchain4j-open-ai" }
+langchain4j-easy-rag = { group = "dev.langchain4j", name = "langchain4j-easy-rag" }
+langchain4j-embedding-inprocess = { group = "dev.langchain4j", name = "langchain4j-embeddings-all-minilm-l6-v2-q" }
+
+# Testing libraries
+junit-jupiter-params = { group = "org.junit.jupiter", name = "junit-jupiter-params" }
+kotest-assertions = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
+assertj-core = { group = "org.assertj", name = "assertj-core", version.ref = "assertj" }
+finchly = { group = "me.kpavlov.finchly", name = "finchly", version.ref = "finchly" }
+
+# Other dependencies
+aimocks-openai = { group = "me.kpavlov.aimocks", name = "ai-mocks-openai", version.ref = "aimocks" }
+slf4j-simple = { group = "org.slf4j", name = "slf4j-simple", version.ref = "slf4j" }
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+foojay-resolver = { id = "org.gradle.toolchains.foojay-resolver-convention", version = "1.0.0" }

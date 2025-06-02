@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    kotlin("jvm") version "2.1.21"
+    alias(libs.plugins.kotlin.jvm)
 }
 
 group = "com.example"
@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
+    testImplementation(libs.kotlin.test)
 }
 
 tasks.test {
@@ -27,15 +27,16 @@ kotlin {
 }
 
 dependencies {
-    implementation(platform("dev.langchain4j:langchain4j-bom:1.0.1"))
-    implementation(group = "dev.langchain4j", name = "langchain4j-kotlin")
-    implementation(group = "dev.langchain4j", name = "langchain4j-open-ai")
-    implementation(group = "dev.langchain4j", name = "langchain4j-easy-rag")
-    implementation("me.kpavlov.aimocks:ai-mocks-openai:0.4.2")
-    runtimeOnly("org.slf4j:slf4j-simple:2.0.17")
+    implementation(platform(libs.langchain4j.bom))
+    implementation(libs.langchain4j.kotlin)
+    implementation(libs.langchain4j.openai)
+    implementation(libs.langchain4j.embedding.inprocess)
+    implementation(libs.aimocks.openai)
+    runtimeOnly(libs.slf4j.simple)
+    testImplementation(libs.finchly)
+    testImplementation(libs.assertj.core)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.kotest.assertions)
+    testImplementation(libs.junit.jupiter.params)
     testImplementation(group = "dev.langchain4j", name = "langchain4j-core", classifier = "tests")
-    testImplementation("me.kpavlov.finchly:finchly:0.1.1")
-    testImplementation("org.assertj:assertj-core:3.27.3")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
-    testImplementation("io.kotest:kotest-assertions-json:5.9.1")
 }
