@@ -1,7 +1,12 @@
 package e00;
 
+import org.jspecify.annotations.Nullable;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
@@ -23,14 +28,17 @@ class Async2JavaTest {
         }
     }
 
-    CompletableFuture<String> callApi() {
+    CompletableFuture<String> callApi(@Nullable String apiResult) {
         return CompletableFuture.supplyAsync(() -> {
             sleep();
-            return "Hello World";
+            return apiResult;
         }, executor1);
     }
 
     CompletableFuture<String> processData(String data) {
+        if (data == null) {
+            return CompletableFuture.completedFuture(null);
+        }
         return CompletableFuture.supplyAsync(() -> {
             sleep();
             return data.toUpperCase();
@@ -38,6 +46,9 @@ class Async2JavaTest {
     }
 
     CompletableFuture<UUID> saveToDb(String data) {
+        if (data == null) {
+            return CompletableFuture.completedFuture(null);
+        }
         return CompletableFuture.supplyAsync(() -> {
             sleep();
             return UUID.randomUUID();
@@ -46,7 +57,7 @@ class Async2JavaTest {
 
     @Test
     void testAsyncFutures() {
-        final var result = callApi()
+        final var result = callApi("Hello, World")
             .thenCompose(this::processData)
             .thenCompose(this::saveToDb)
             .join();
@@ -55,14 +66,19 @@ class Async2JavaTest {
         assertThat(result).isNotNull();
     }
 
-    @Test
-    void testAsyncWithConditions() {
-        final var result = callApi()
+    @ParameterizedTest
+    @ValueSource(strings = {
+        "Hello, World",
+        "Bye-bye",
+    })
+    @NullSource
+    void testAsyncWithConditions(@Nullable String apiResult) {
+        final var result = callApi(apiResult)
             .thenApply(it -> {
-                if (it.contains("Bye")) {
+                if (it != null && it.contains("Hello")) {
                     return it;
                 } else {
-                    throw new IllegalStateException("No 'Bye' in the response");
+                    return null;
                 }
             })
             .thenCompose(this::processData)
@@ -79,7 +95,11 @@ class Async2JavaTest {
             .join();
 
         System.out.println("✅ Result: " + result);
-        assertThat(result).isNull();
+        if (Objects.equals(apiResult, "Hello, World")) {
+            assertThat(result).isInstanceOf(UUID.class);
+        } else {
+            assertThat(result).isNull();
+        }
     }
 
 }

@@ -18,7 +18,7 @@ internal class SuspendCompletionsTest {
         OpenAiChatModel
             .builder()
             .apiKey(TestEnvironment.get("OPENAI_API_KEY", "dummy-key-for-tests"))
-            .baseUrl(mockOpenAi.baseUrl())
+            .baseUrl(mockOpenAi.baseUrl()) // comment this to call real OpenAI
             .modelName("gpt-4.1-nano")
             .temperature(0.7)
             .maxCompletionTokens(100)
