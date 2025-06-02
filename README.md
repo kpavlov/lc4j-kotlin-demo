@@ -1,6 +1,6 @@
 # LangChain4j Kotlin Demo
 
-[![Build with Gradle](https://github.com/kpavlov/lc4j-kotlin-demo/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/kpavlov/lc4j-kotlin-demo/actions/workflows/build.yml)
+[![Java CI with Gradle](https://github.com/kpavlov/lc4j-kotlin-demo/actions/workflows/build.yml/badge.svg)](https://github.com/kpavlov/lc4j-kotlin-demo/actions/workflows/build.yml)
 
 This repository contains a collection of examples demonstrating how to use [LangChain4j](https://github.com/langchain4j/langchain4j) with Kotlin. LangChain4j is a popular Java framework for building applications with Large Language Models (LLMs).
 
