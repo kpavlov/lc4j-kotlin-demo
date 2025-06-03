@@ -1,7 +1,8 @@
 package e03streaming
 
 import dev.langchain4j.data.message.UserMessage.userMessage
-import dev.langchain4j.model.chat.request.ChatRequest
+import dev.langchain4j.kotlin.model.chat.request.chatRequest
+import dev.langchain4j.model.chat.StreamingChatModel
 import dev.langchain4j.model.chat.response.ChatResponse
 import dev.langchain4j.model.chat.response.StreamingChatResponseHandler
 import dev.langchain4j.model.openai.OpenAiStreamingChatModel
@@ -14,11 +15,12 @@ import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.atomic.AtomicReference
 import kotlin.test.Test
+import kotlin.time.Duration.Companion.milliseconds
 
 class CompletionsStreamingTest {
     private val mockOpenAi = MockOpenai(verbose = false)
 
-    val model =
+    private val model: StreamingChatModel =
         OpenAiStreamingChatModel
             .builder()
             .apiKey(TestEnvironment.get("OPENAI_API_KEY", "dummy-key-for-tests"))
@@ -43,18 +45,16 @@ class CompletionsStreamingTest {
                         .split(" ")
                         .forEach { word ->
                             emit(" $word")
-                            delay(1000)
+                            delay(500.milliseconds)
                         }
                 }
         }
 
         model
             .chat(
-                ChatRequest
-                    .builder()
-                    .messages(
-                        userMessage("What is the color of the sky?"),
-                    ).build(),
+                chatRequest {
+                    messages += userMessage("What is the color of the sky?")
+                },
                 object : StreamingChatResponseHandler {
                     override fun onPartialResponse(partialResponse: String?) {
                         println("🔵 \"$partialResponse\"")

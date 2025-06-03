@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 group = "com.example"
@@ -38,5 +39,6 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.kotest.assertions)
     testImplementation(libs.junit.jupiter.params)
+    implementation(libs.kotlinx.serialization.json)
     testImplementation(group = "dev.langchain4j", name = "langchain4j-core", classifier = "tests")
 }

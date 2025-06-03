@@ -46,12 +46,12 @@ Tzolov [spring.io/blog/2025/01/21/spring-ai-agentic-patterns](https://spring.io/
 
 ## Testing Utilities
 
-![](https://kpavlov.github.io/ai-mocks/mokksy-logo.png)
-
 [**AI-Mocks and Mokksy**](https://github.com/kpavlov/ai-mocks/) - Mock HTTP/SSE and
 LLMs ([docs](https://kpavlov.github.io/ai-mocks/))
 
 [**Finchly**](https://github.com/kpavlov/finchly) - Test utilities for mocking
+
+[otel-tui](https://github.com/ymtdzzz/otel-tui) - A terminal OpenTelemetry viewer 
 
 ## Others
 

@@ -49,23 +49,21 @@ class SuspendCompletionsStreamingTest {
         runBlocking {
             model
                 .chatFlow {
-                    messages(
-                        listOf(
-                            userMessage("Tell me a joke about LLM"),
-                        ),
-                    )
+                    messages += userMessage("Tell me a joke about LLM")
                 }.collect { reply ->
                     when (reply) {
                         is StreamingChatModelReply.PartialResponse -> {
                             println("🔵 \"${reply.partialResponse}\"")
                             tokens += reply.partialResponse
                         }
+
                         is StreamingChatModelReply.CompleteResponse -> {
                             println("✅ \"${reply.response.aiMessage().text()}\"")
                             chatResponseHolder.set(reply.response)
                             reply.response.aiMessage().text() shouldBe
                                 " Why did LLM cross road? Hallucination."
                         }
+
                         is StreamingChatModelReply.Error -> {
                             println("🛑😫 ${reply.cause.message}")
                             reply.cause.printStackTrace()
