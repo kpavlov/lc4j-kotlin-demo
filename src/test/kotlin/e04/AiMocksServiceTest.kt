@@ -1,5 +1,6 @@
 package e04
 
+import dev.langchain4j.model.chat.ChatModel
 import dev.langchain4j.model.openai.OpenAiChatModel
 import dev.langchain4j.service.AiServices
 import dev.langchain4j.service.UserMessage
@@ -10,7 +11,7 @@ import kotlin.test.Test
 class AiMocksServiceTest {
     val mockOpenAi = MockOpenai(verbose = true)
 
-    val model: OpenAiChatModel =
+    val model: ChatModel =
         OpenAiChatModel
             .builder()
             .baseUrl(mockOpenAi.baseUrl())

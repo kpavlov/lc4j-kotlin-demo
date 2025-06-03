@@ -36,14 +36,12 @@ class RagWithMemoryTest {
             .build()
 
     private val chatMemoryProvider: ChatMemoryProvider =
-        object : ChatMemoryProvider {
-            override fun get(memoryId: Any): ChatMemory = memory
-        }
+        ChatMemoryProvider { memory }
 
     private val model =
         OpenAiChatModel
             .builder()
-            .apiKey(TestEnvironment.get("OPENAI_API_KEY"))
+            .apiKey(TestEnvironment["OPENAI_API_KEY"])
             .modelName("gpt-4.1-nano")
             .maxTokens(1500)
             .responseFormat("json_schema")

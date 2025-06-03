@@ -39,11 +39,7 @@ internal class SuspendCompletionsTest {
         runBlocking(Dispatchers.IO) {
             val response =
                 model.chat {
-                    messages(
-                        listOf(
-                            userMessage("What does LLM stand for?"),
-                        ),
-                    )
+                    messages += userMessage("What does LLM stand for?")
                 }
 
             val aiResponse = response.aiMessage().text()
