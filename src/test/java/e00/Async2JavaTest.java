@@ -86,7 +86,7 @@ class Async2JavaTest {
             .handle((UUID id, Throwable th) -> {
                 if (th != null) {
                     // handle exception
-                    System.out.println("❌ Error caught as expected" + th.getMessage());
+                    System.out.println("❌ Error: " + th.getMessage());
                     return null;
                 } else {
                     return id;
@@ -95,6 +95,7 @@ class Async2JavaTest {
             .join();
 
         System.out.println("✅ Result: " + result);
+
         if (Objects.equals(apiResult, "Hello, World")) {
             assertThat(result).isInstanceOf(UUID.class);
         } else {
