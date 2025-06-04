@@ -18,7 +18,7 @@ import kotlin.test.Test
 import kotlin.time.Duration.Companion.milliseconds
 
 class CompletionsStreamingTest {
-    private val mockOpenAi = MockOpenai(verbose = false)
+    private val mockOpenAi = MockOpenai(verbose = true)
 
     private val model: StreamingChatModel =
         OpenAiStreamingChatModel
@@ -41,7 +41,7 @@ class CompletionsStreamingTest {
         } respondsStream {
             responseFlow =
                 flow {
-                    "The  color  of  the  sky  typically  appears  blue  during  the  day."
+                    "The color of the sky typically appears blue during the day."
                         .split(" ")
                         .forEach { word ->
                             emit(" $word")
@@ -78,7 +78,7 @@ class CompletionsStreamingTest {
             )
         latch.await()
 
-        println("Tokens: ${tokens.joinToString(" ")}")
+        println("Tokens: ${tokens.joinToString()}")
         println("ChatResponse: ${chatResponseHolder.get()}")
 
         tokens.joinToString(" ") shouldContainIgnoringCase "blue"

@@ -1,6 +1,7 @@
 package e01
 
 import dev.langchain4j.data.message.UserMessage.userMessage
+import dev.langchain4j.kotlin.model.chat.request.chatRequest
 import dev.langchain4j.model.chat.request.ChatRequest
 import dev.langchain4j.model.openai.OpenAiChatModel
 import io.kotest.matchers.string.shouldContain
@@ -33,11 +34,9 @@ internal class BlockingCompletionsTest {
 
         val response =
             model.chat(
-                ChatRequest
-                    .builder()
-                    .messages(
-                        userMessage("Tell me a joke about LLM"),
-                    ).build(),
+                chatRequest {
+                    messages += userMessage("Tell me a joke about LLM")
+                }
             )
         val aiResponse = response.aiMessage().text()
 
