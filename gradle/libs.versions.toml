@@ -5,7 +5,7 @@ kotest = "5.9.1"
 kotlinx-coroutines = "1.10.2"
 assertj = "3.27.3"
 slf4j = "2.0.17"
-aimocks = "0.4.2"
+aimocks = "0.4.3"
 finchly = "0.1.1"
 kotlinx-serialization = "1.9.0"
 
