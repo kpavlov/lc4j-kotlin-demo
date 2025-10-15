@@ -1,6 +1,6 @@
 [versions]
 kotlin = "2.2.20"
-langchain4j = "1.4.0"
+langchain4j = "1.7.1"
 kotest = "6.0.4"
 kotlinx-coroutines = "1.10.2"
 assertj = "3.27.6"
