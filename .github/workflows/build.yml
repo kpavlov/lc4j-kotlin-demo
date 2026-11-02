@@ -31,7 +31,7 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@0723195856401067f7a2779048b490ace7a47d7c # v5.0.2
       with:
-        gradle-version: '8.14.1'
+        gradle-version: '8.14.6'
 
     - name: Build with Gradle 8.14
       run: gradle build
